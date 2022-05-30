@@ -1,7 +1,9 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react'
+import React, { useState } from 'react';
 import './App.css';
 import { Popover, Transition } from '@headlessui/react'
+import { PaperClipIcon } from '@heroicons/react/solid'
 import {
   BookmarkAltIcon,
   CalendarIcon,
@@ -20,26 +22,26 @@ import { ChevronDownIcon } from '@heroicons/react/solid'
 
 const solutions = [
   {
-    name: 'Analytics',
+    name: 'University',
     description: 'Get a better understanding of where your traffic is coming from.',
     href: '#',
     icon: ChartBarIcon,
   },
   {
-    name: 'Engagement',
+    name: 'Secondary School',
     description: 'Speak directly to your customers in a more meaningful way.',
     href: '#',
     icon: CursorClickIcon,
   },
-  { name: 'Security', description: "Your customers' data will be safe and secure.", href: '#', icon: ShieldCheckIcon },
+  { name: 'Primary School', description: "Your customers' data will be safe and secure.", href: '#', icon: ShieldCheckIcon },
   {
-    name: 'Integrations',
+    name: 'Kindergaten',
     description: "Connect with third-party tools that you're already using.",
     href: '#',
     icon: ViewGridIcon,
   },
   {
-    name: 'Automations',
+    name: 'Diploma',
     description: 'Build strategic funnels that will drive your customers to convert',
     href: '#',
     icon: RefreshIcon,
@@ -76,11 +78,70 @@ const recentPosts = [
   { id: 3, name: 'Improve your customer experience', href: '#' },
 ]
 
+
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Example() {
+  const questions = [
+    {
+      questionText: 'What is the capital of France?',
+      answerOptions: [
+        { answerText: 'New York', isCorrect: false },
+        { answerText: 'London', isCorrect: false },
+        { answerText: 'Paris', isCorrect: true },
+        { answerText: 'Dublin', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'Who is CEO of Tesla?',
+      answerOptions: [
+        { answerText: 'Jeff Bezos', isCorrect: false },
+        { answerText: 'Elon Musk', isCorrect: true },
+        { answerText: 'Bill Gates', isCorrect: false },
+        { answerText: 'Tony Stark', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'The iPhone was created by which company?',
+      answerOptions: [
+        { answerText: 'Apple', isCorrect: true },
+        { answerText: 'Intel', isCorrect: false },
+        { answerText: 'Amazon', isCorrect: false },
+        { answerText: 'Microsoft', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'How many Harry Potter books are there?',
+      answerOptions: [
+        { answerText: '1', isCorrect: false },
+        { answerText: '4', isCorrect: false },
+        { answerText: '6', isCorrect: false },
+        { answerText: '7', isCorrect: true },
+      ],
+    },
+  ];
+  
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [showScore, setShowScore] = useState(false);
+  const [score, setScore] = useState(0);
+  
+  const handleAnswerOptionClick = (isCorrect) => {
+    if (isCorrect) {
+      setScore(score + 1);
+    }
+  
+    const nextQuestion = currentQuestion + 1;
+    if (nextQuestion < questions.length) {
+      setCurrentQuestion(nextQuestion);
+    } else {
+      setShowScore(true);
+    }
+  }
+
+
   return (
     <Popover className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -109,7 +170,7 @@ export default function Example() {
                       'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                     )}
                   >
-                    <span>Solutions</span>
+                    <span>Grade Level</span>
                     <ChevronDownIcon
                       className={classNames(
                         open ? 'text-gray-600' : 'text-gray-400',
@@ -166,11 +227,9 @@ export default function Example() {
             </Popover>
 
             <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-              Pricing
+              <h1 className='text-2xl'>+</h1>
             </a>
-            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-              Docs
-            </a>
+     
 
             <Popover className="relative">
               {({ open }) => (
@@ -335,8 +394,83 @@ export default function Example() {
               </div>
             </div>
           </div>
+         
         </Popover.Panel>
       </Transition>
+      <div class="flex">
+  <div class="w-1/5 bg-white-500 h-50"></div>
+  <div class="w-3/5 bg-white-500 h-12">
+
+      <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+     <div className="px-4 py-5 sm:px-6">
+       <h3 className="text-lg leading-6 font-medium text-gray-900">Trivia Questions for High School</h3>
+       <p className="mt-1 max-w-2xl text-sm text-gray-500">Boost your knowledge in different areas such as Science, English, History, Islamic education, and geography, etc.</p>
+     </div>
+     <div className="border-t bg-white-500">
+       <dl>
+       <div className='app'>
+			{showScore ? (
+				<div className='score-section bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6'>
+					You scored {score} out of {questions.length}
+				</div>
+			) : (
+				<>
+					<div className='question-section bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6'>
+						<div className='question-count '>
+							<span className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Question {currentQuestion + 1}</span>/{questions.length}
+						</div>
+						<div className='question-text mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2'>{questions[currentQuestion].questionText}</div>
+					</div>
+					<div className='answer-section bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6 inline-flex'>
+						{questions[currentQuestion].answerOptions.map((answerOption) => (
+							<button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+						))}
+					</div>
+				</>
+			)}
+		</div>
+	
+         <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+           <dt className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">1. How water is written scientifically?</dt>
+            
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline sm:mt-0 sm:col-span-2" id="answer" type="text" placeholder=""></input>
+         </div>
+         <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+           <dt className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">2. John Lennon is one of the four sacred members of?</dt>
+            
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline sm:mt-0 sm:col-span-2" id="answer" type="text" placeholder=""></input>
+         </div>
+         <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+           <dt className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">3. ________ is the basic unit of all living things?</dt>
+            
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline sm:mt-0 sm:col-span-2" id="answer" type="text" placeholder=""></input>
+         </div>
+         <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+           <dt className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">4. The square root of 81 is?</dt>
+            
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline sm:mt-0 sm:col-span-2" id="answer" type="text" placeholder=""></input>
+         </div>
+         <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+           <dt className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">5. The indication of any future event is known as?</dt>
+            
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline sm:mt-0 sm:col-span-2" id="answer" type="text" placeholder=""></input>
+         </div>
+         <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+           <dt className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">6. A group pf wolves is called?</dt>
+            
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline sm:mt-0 sm:col-span-2" id="answer" type="text" placeholder=""></input>
+         </div>
+         
+             
+           
+         
+       </dl>
+     </div>
+   </div>
+   </div>
+  <div class="w-1/5 bg-white-500 h-50"></div>
+   </div>
     </Popover>
+
   )
 }
