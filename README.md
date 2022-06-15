@@ -1,3 +1,6 @@
+![qna_ss_6_15_2022](https://user-images.githubusercontent.com/63499020/173942700-ec691e6a-ae03-41e1-9591-f316e0f296c3.png)
+
+
 A question and answer web app for all students.
 
 # Getting Started with Create React App
