@@ -1,46 +1,67 @@
-import { Fragment } from "react";
+
 import React, { useState } from "react";
-import { Popover, Transition } from "@headlessui/react";
+
+
+ 
+
 import "../App.css";
 
 export default function Questions() {
   const questions = [
     {
-      questionText: "What is the capital of France?",
+      questionText: "In the human digestive system, absorption of food takes place in the",
       answerOptions: [
-        { answerText: "New York", isCorrect: false },
-        { answerText: "London", isCorrect: false },
-        { answerText: "Paris", isCorrect: true },
-        { answerText: "Dublin", isCorrect: false },
+        { answerText: "Stomach", isCorrect: false },
+        { answerText: "Large Intestine", isCorrect: false },
+        { answerText: "Rectum", isCorrect: false },
+        { answerText: "Small Intestine", isCorrect: true },
       ],
     },
     {
-      questionText: "Who is CEO of Tesla?",
+      questionText: "Which one of the following processes refers to the fusion of the egg and sperm?",
       answerOptions: [
-        { answerText: "Jeff Bezos", isCorrect: false },
-        { answerText: "Elon Musk", isCorrect: true },
-        { answerText: "Bill Gates", isCorrect: false },
-        { answerText: "Tony Stark", isCorrect: false },
+        { answerText: "Implantation", isCorrect: false },
+        { answerText: "Parturition", isCorrect: false },
+        { answerText: "Fertilization", isCorrect: true },
+        { answerText: "Ovulation", isCorrect: false },
       ],
     },
     {
-      questionText: "The iPhone was created by which company?",
+      questionText: "The following practices help to maintain strong and healthy teeth except",
       answerOptions: [
-        { answerText: "Apple", isCorrect: true },
-        { answerText: "Intel", isCorrect: false },
-        { answerText: "Amazon", isCorrect: false },
-        { answerText: "Microsoft", isCorrect: false },
+        { answerText: "Eating Vegetables", isCorrect: false },
+        { answerText: "Chewing Sugarcane", isCorrect: false },
+        { answerText: "Eating Cakes", isCorrect: true },
+        { answerText: "Drinking Milk", isCorrect: false },
       ],
     },
     {
-      questionText: "How many Harry Potter books are there?",
+      questionText: "Which one of the following vaccines is administered only at birth?",
       answerOptions: [
-        { answerText: "1", isCorrect: false },
-        { answerText: "4", isCorrect: false },
-        { answerText: "6", isCorrect: false },
-        { answerText: "7", isCorrect: true },
+        { answerText: "DPT", isCorrect: false },
+        { answerText: "BCG", isCorrect: true },
+        { answerText: "Measles", isCorrect: false },
+        { answerText: "Polio", isCorrect: false },
       ],
     },
+    {
+      questionText: "The fourth and the seventh planets from the sun respectively are",
+      answerOptions: [
+        { answerText: "Earth and Saturn", isCorrect: false },
+        { answerText: "Venus and Neptune", isCorrect:  false},
+        { answerText: "Jupiter and Mercury", isCorrect: false },
+        { answerText: "Mars and Uranus.", isCorrect: true },
+      ],
+    },
+    // {
+    //   questionText: "",
+    //   answerOptions: [
+    //     { answerText: "", isCorrect: false },
+    //     { answerText: "", isCorrect:  false},
+    //     { answerText: "", isCorrect: false },
+    //     { answerText: "", isCorrect: false },
+    //   ],
+    // },
   ];
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -64,18 +85,21 @@ export default function Questions() {
     
       
           <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+           
             <div className="px-4 py-5 sm:px-6">
               <h3 className="text-lg leading-6 font-medium text-gray-900">
-                Trivia Questions for High School
+              THE KENYA NATIONAL EXAMINATIONS COUNCIL
+              </h3>
+              <h3 className="text-lg leading-6 font-medium text-gray-900">
+              Class 8
               </h3>
               <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                Boost your knowledge in different areas such as Science,
-                English, History, Islamic education, and geography, etc.
+              Monitoring Learner Achievement at Primary School Level in Kenya
               </p>
             </div>
-            <div className="w-full bg-gray-200 h-1 mb-6">
+            {/* progress bar <div className="w-full bg-gray-200 h-1 mb-6">
               <div className="bg-blue-600 h-1" style={{ width: "0%" }}></div>
-            </div>
+            </div> */}
             <div className="border-t bg-white-500">
             
                 <div className="app">
@@ -117,43 +141,7 @@ export default function Questions() {
                     </>
                   )}
                 </div>
-                {/* <form>
-                  <div className="question-section bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6">
-                    <div className="question-count ">
-                      <span className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        <label class="form-label inline-block mb-2 text-gray-700">
-                          <h3 className="text-lg leading-6 font-medium text-gray-900">
-                            Workbook
-                          </h3>
-                        </label>
-                      </span>
-                    </div>
-                    <div className="question-text mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      <textarea
-                        class="
-        form-control
-        block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-      "
-                        id="workbook"
-                        rows="10"
-                        placeholder="Workbook"
-                      />
-                    </div>
-                  </div>
-                </form> */}
+ 
              
             </div>
           </div>

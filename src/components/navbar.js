@@ -1,8 +1,9 @@
 import { Fragment } from "react";
-import React, { useState } from "react";
+import React from "react";
 import "../App.css";
 import { Popover, Transition } from "@headlessui/react";
-import { PaperClipIcon } from "@heroicons/react/solid";
+
+import { Outlet, Link } from "react-router-dom";
 
 import {
   BookmarkAltIcon,
@@ -200,14 +201,14 @@ const solutions = [
                 </>
               )}
             </Popover>
-
+{/* 
             <a
               href="#"
               className="text-base font-medium text-gray-500 hover:text-gray-900"
             >
-              <h1 className="text-2xl">+</h1>
-            </a>
-
+              New Quiz
+            </a> */}
+            <Link to="./routes/new_quiz.js"><p className="text-gray-900">Add New Quiz</p> </Link>
             <Popover className="relative">
               {({ open }) => (
                 <>
@@ -415,6 +416,7 @@ const solutions = [
           </div>
         </Popover.Panel>
       </Transition>
+      <Outlet />
       </Popover>
   );
                 }

@@ -1,6 +1,6 @@
-import { Fragment } from "react";
-import React, { useState } from "react";
-import { Popover, Transition } from "@headlessui/react";
+
+import React from "react";
+
 import "../App.css";
 
 export default function Workbook() {
